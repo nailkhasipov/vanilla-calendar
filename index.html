@@ -5,8 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Calendar</title>
+  <style>
+    .container {
+      width: 700px;
+      padding: 0;
+      margin: 50px auto;
+      list-style: none;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+  </style>
 </head>
 <body>
+  <div class="container" id="container"></div>
   <script>
     var months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
     var dayInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -55,7 +67,8 @@
                 cell.setAttribute("align", "center");
             }
         }
-        document.getElementsByTagName('body')[0].appendChild(table);
+        // document.getElementsByTagName('body')[0].appendChild(table);
+        document.getElementById('container').appendChild(table);
     }
   </script>
 </body>

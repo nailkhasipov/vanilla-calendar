@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Helvetica Neue';
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  border-bottom: 1px solid;
+}
+
+.navigation .tabs .tab-item {
+  display: inline-block;
+}
+
+.view {
+  height: 100%;
+}
+
+.view .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view .view-pane {
+  display: none;
+  height: 100%;
+}
+
+#calendar-year {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#calendar-year .month-wrapper {
+  flex-basis: 25%;
+  padding: 20px;
+}
+
+#calendar-year .month-wrapper table {
+  width: 100%;
+}
+
+#calendar-year .month-wrapper table tr {
+  line-height: 2em;
+}
+
+#month .month-wrapper {
+  height: 100%;
+}
+
+#month .month-wrapper table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+#month .month-wrapper table td {
+  border: 1px solid;
+}

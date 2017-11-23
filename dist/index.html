@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section class="navigation">
+    <div class="create-event">
+      <button>+</button>
+    </div>
+
+    <ul class="tabs">
+      <li class="tab-item">
+        <a class="nav-link" href="#day">Day</a>
+      </li>
+      <li class="tab-item">
+        <a class="nav-link" href="#week">Week</a>
+      </li>
+      <li class="tab-item">
+        <a class="nav-link" href="#month">Month</a>
+      </li>
+      <li class="tab-item">
+        <a class="nav-link" href="#year">Year</a>
+      </li>
+    </ul>
+
+    <div class="search">
+      <input type="text">
+    </div>
+  </section>
+  
+  <section class="view">
+    <div class="header">
+      <div class="title">
+        <h1>2017</h1>
+      </div>
+      <div class="buttons">
+        <button><</button>
+        <button>Today</button>
+        <button>></button>
+      </div>
+    </div>
+
+    <div class="view-pane" id="month">
+      <div id="month"></div>
+    </div>
+
+    <div class="view-pane" id="year">
+      <div id="calendar-year"></div>
+    </div>
+  </section>
+
+  <script src="bundle.js"></script>
+</body>
+</html>

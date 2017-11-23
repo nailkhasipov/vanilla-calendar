@@ -1,1 +1,1 @@
-# vanilla-calendar
+# calendar

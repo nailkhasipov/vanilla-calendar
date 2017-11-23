@@ -20,7 +20,7 @@ UI.prototype.tabs = function() {
     document.querySelector(name).style.display = 'block';
   }
 
-  selectTab('#year');
+  selectTab('#day');
 };
 
 export { UI };

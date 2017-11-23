@@ -1,67 +1,71 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
+  width: 100%;
   height: 100%;
   font-family: 'Helvetica Neue';
+  margin: 0;
+  padding: 0;
 }
 
-.navigation {
+.app {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.app .header {
+  height: 60px;
+  text-align: center;
+}
+
+.app .header h1 {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 60px;
+  margin: 0;
+}
+
+.app .main {
+  flex: 1;
+  display: flex;
+}
+
+.app .main .sidebar {
+  width: 200px;
+  border-left: 1px solid #e2e2e2;
+}
+
+.app .main .grid-container {
+  flex: 1;
+  overflow: scroll;
+  display: flex;
+}
+
+.app .main .grid-container .labels {
+  width: 20px;
+}
+
+.app .main .grid-container .labels span {
+  font-weight: 300;
+  display: block;
+  line-height: 40px;
+  color: #b9b9b9;
+}
+
+.app .main .grid-container .day-grid {
+  flex: 1;
+}
+
+.app .main .day-grid .hour {
   height: 40px;
-  border-bottom: 1px solid;
+  border-top: 1px solid #e2e2e2;
 }
 
-.navigation .tabs .tab-item {
-  display: inline-block;
-}
-
-.view {
-  height: 100%;
-}
-
-.view .header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.view .view-pane {
-  display: none;
-  height: 100%;
-}
-
-#calendar-year {
-  display: flex;
-  flex-flow: row wrap;
-}
-
-#calendar-year .month-wrapper {
-  flex-basis: 25%;
-  padding: 20px;
-}
-
-#calendar-year .month-wrapper table {
-  width: 100%;
-}
-
-#calendar-year .month-wrapper table tr {
-  line-height: 2em;
-}
-
-#month .month-wrapper {
-  height: 100%;
-}
-
-#month .month-wrapper table {
-  width: 100%;
-  height: 100%;
-  border-collapse: collapse;
-}
-
-#month .month-wrapper table td {
-  border: 1px solid;
+.app .main .day-grid .fifteen-minutes {
+  height: 10px;
 }

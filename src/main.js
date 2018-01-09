@@ -5,6 +5,8 @@ const calendar = new Calendar;
 const sidebar = document.querySelector('#sidebar');
 const gridContainer = document.querySelector('#gridContainer');
 
+document.body.onmousedown = function() {};
+
 sidebar.appendChild(calendar.drawMonth(calendar.months[0], calendar.getMonth(calendar.dayInMonth[0], 7)));
 
 gridContainer.appendChild(drawHourLabels());

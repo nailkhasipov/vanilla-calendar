@@ -5,7 +5,6 @@ function Calendar() {
 }
 
 Calendar.prototype.draw = function() {
-  // var year = [];
   for (var i = 0; i < this.months.length; i++) {
     var start = new Date('2017-' + (i+1) + '-01').getDay();
     start = (start===0) ? 7 : start;

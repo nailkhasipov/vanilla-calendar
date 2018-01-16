@@ -2,26 +2,12 @@ const gridContainer = document.querySelector('#gridContainer');
 
 export class Day {
   constructor() {
-    this.mousePressed = false;
-
-    gridContainer.onmousedown = function(e) {
-      console.log(e);
-      this.mousePressed = true;
-    };
-
-    gridContainer.onmousemove = function(e) {
-      if (this.mousePressed)
-        e.target.style.backgroundColor = 'deepskyblue';
-    };
-    
-    gridContainer.onmouseup = function() {
-      this.mousePressed = false;
-    };
   }
 
   render() {
     const day = document.createElement('div');
     day.className = 'day-grid';
+    day.id = 'day-grid';
 
     const labels = document.createElement('div');
     labels.className = 'labels';
@@ -47,14 +33,18 @@ class Hour {
     hour.className = 'hour';
 
     for (let i = 0; i < 4; i++) {
-      const fifteen = document.createElement('div');
-      fifteen.className = 'fifteen';
-      // fifteen.addEventListener('dblclick', function() {
-      //   fifteen.style.backgroundColor = 'deepskyblue';
-      // });
-      hour.appendChild(fifteen);
+      let thirteen = new Thirteen();
+      hour.appendChild(thirteen.render());
     }
 
     return hour;
+  }
+}
+
+class Thirteen {
+  render() {
+    const thirteen = document.createElement('div');
+    thirteen.className = 'thirteen';
+    return thirteen;
   }
 }

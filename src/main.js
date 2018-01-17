@@ -5,6 +5,8 @@ import { Event } from './event.js';
 const calendar = new Calendar;
 const day = new Day;
 let events = [];
+let currentEvent = null;
+let mousePressed = false;
 
 const sidebar = document.querySelector('#sidebar');
 const gridContainer = document.querySelector('#gridContainer');
@@ -21,19 +23,23 @@ const dayGrid = document.querySelector('#day-grid');
 
 dayGrid.appendChild(blank);
 
-dayGrid.onmousedown = function(e) {
-  console.log(e);
-  let event = new Event(e.offsetY);
-  blank.appendChild(event.render());
+dayGrid.onmousedown = e => {
+  mousePressed = true;
+  addEvent(e);
 };
 
-// gridContainer.onmousemove = function() {
-//   if (this.mousePressed) {
-//     this.event.height += 20;
-//     this.event.render();
-//   }
-// };
+dayGrid.onmousemove = e => {
+  if (currentEvent && mousePressed)
+    currentEvent.resize(e);
+};
 
-// gridContainer.onmouseup = function() {
-//   this.mousePressed = false;
-// };
+window.onmouseup = () => {
+  mousePressed = false;
+};
+
+function addEvent(e) {
+  let event = new Event(e.offsetY);
+  currentEvent = event;
+  events.push(event);
+  blank.appendChild(event.render());
+}

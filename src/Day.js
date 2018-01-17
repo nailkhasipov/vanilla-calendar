@@ -33,18 +33,18 @@ class Hour {
     hour.className = 'hour';
 
     for (let i = 0; i < 4; i++) {
-      let thirteen = new Thirteen();
-      hour.appendChild(thirteen.render());
+      let thirty = new Thirty();
+      hour.appendChild(thirty.render());
     }
 
     return hour;
   }
 }
 
-class Thirteen {
+class Thirty {
   render() {
-    const thirteen = document.createElement('div');
-    thirteen.className = 'thirteen';
-    return thirteen;
+    const thirty = document.createElement('div');
+    thirty.className = 'thirty';
+    return thirty;
   }
 }

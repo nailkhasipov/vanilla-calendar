@@ -35,10 +35,17 @@ dayGrid.onmousemove = e => {
 
 window.onmouseup = () => {
   mousePressed = false;
+  if (currentEvent) {
+    do {
+      var eventName = prompt('Event name');
+    } while (!eventName);
+    currentEvent.name = eventName;
+    currentEvent.displayName();
+  }
 };
 
 function addEvent(e) {
-  let event = new Event(e.offsetY);
+  let event = new Event(e);
   currentEvent = event;
   events.push(event);
   blank.appendChild(event.render());

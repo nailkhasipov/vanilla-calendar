@@ -5,7 +5,7 @@ import { Event } from './event.js';
 const calendar = new Calendar;
 const day = new Day;
 let events = [];
-let currentEvent = null;
+let currentEvent = undefined;
 let mousePressed = false;
 
 const sidebar = document.querySelector('#sidebar');
@@ -24,24 +24,38 @@ const dayGrid = document.querySelector('#day-grid');
 dayGrid.appendChild(blank);
 
 dayGrid.onmousedown = e => {
-  mousePressed = true;
-  addEvent(e);
+  if (e.target.className != 'event') {
+    mousePressed = true;
+    addEvent(e);
+  }
 };
 
 dayGrid.onmousemove = e => {
   if (currentEvent && mousePressed)
     currentEvent.resize(e);
+
+  events.forEach(function(event) {
+    if (event.isDragged) {
+      event.move(getOffset(e));
+    }
+  }); 
 };
 
 window.onmouseup = () => {
   mousePressed = false;
   if (currentEvent) {
-    do {
-      var eventName = prompt('Event name');
-    } while (!eventName);
+    let eventName = prompt('Event name');
     currentEvent.name = eventName;
     currentEvent.displayName();
+
+    currentEvent = undefined;
   }
+
+  events.forEach(function(event) {
+    if (event.isDragged) {
+      event.isDragged = false;
+    }
+  }); 
 };
 
 function addEvent(e) {
@@ -49,4 +63,8 @@ function addEvent(e) {
   currentEvent = event;
   events.push(event);
   blank.appendChild(event.render());
+}
+
+function getOffset(e) {
+  return parseInt(e.clientY) - parseInt(e.target.parentNode.getBoundingClientRect().top);
 }

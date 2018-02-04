@@ -1,7 +1,5 @@
 * New Event Functionality
   * event object
-  * create event for 1 hour when click
-  * draw event whith mouse handle
 * Change Event Functionality
   * edit event fields by form
   * change event time by mouse drag

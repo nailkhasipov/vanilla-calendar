@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "watch": "webpack --watch",
     "build": "webpack"
   },
@@ -19,6 +19,11 @@
   },
   "homepage": "https://github.com/nailkhasipov/calendar#readme",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.1.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.1.4",
+    "regenerator-runtime": "^0.11.1",
     "webpack": "^3.8.1"
   }
 }

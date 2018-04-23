@@ -8,14 +8,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
-    <div class="header">
-      <h1>Календарь</h1>
+  <div class="calendar">
+    <div class="top">
+      <div class="navigation">
+        <button>TODAY</button>
+        <button><</button>
+        <button>></button>
+      </div>
+      <div class="view-change">
+        <button>DAY</button>
+        <button>WEEK</button>
+        <button>MONTH</button>
+      </div>
     </div>
     <div class="main">
-      <div class="grid-container" id="gridContainer"></div>
-      <div class="sidebar" id="sidebar">
-        <button>Создать событие</button>
+      <div class="sidebar">
+        <button>CREATE</button>
+        <div class="sidebar-month" id="sidebar-month"></div>
+      </div>
+      <div class="view">
+        <div class="view-day" id="view-day"></div>
+        <div class="view-week"></div>
+        <div class="view-month"></div>
       </div>
     </div>
   </div>

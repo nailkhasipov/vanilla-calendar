@@ -11,6 +11,10 @@ html, body {
   color: #2e2e2e;
 }
 
+#calendar {
+  height: 100%;
+}
+
 .calendar {
   display: flex;
   flex-direction: column;

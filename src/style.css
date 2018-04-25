@@ -80,3 +80,11 @@ html, body {
   height: 20px;
   position: relative;
 }
+
+.calendar .main .view-week {
+  display: none;
+}
+
+.calendar .main .view-month {
+  display: none;
+}

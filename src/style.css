@@ -71,9 +71,28 @@ html, body {
   position: relative;
 }
 
+.labels {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.labels li {
+  list-style: none;
+  height: 40px;
+}
+
 .day-grid .hour {
   height: 40px;
   border-top: 1px solid #e2e2e2;
+}
+
+.view-day {
+  padding-left: 40px;
+  padding-top: 10px;
 }
 
 .calendar .main .view-day .day-grid {
@@ -81,6 +100,8 @@ html, body {
 }
 
 .calendar .main .view-week {
+  padding-left: 40px;
+  padding-top: 10px;
   display: none;
 }
 
@@ -98,11 +119,19 @@ html, body {
   border: 1px solid #e2e2e2;
 }
 
+.calendar .main .view-week .days {
+  display: flex;
+  flex: 1;
+}
+
 .calendar .main .view-week .day-grid {
   width: 14.285713%;
+}
+
+.calendar .main .view-week .day-grid .hour {
   border-right: 1px solid #e2e2e2;
 }
 
-.calendar .main .view-week .day-grid:last-child {
+.calendar .main .view-week .day-grid:last-child .hour {
   border-right: none;
 }

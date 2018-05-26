@@ -50,9 +50,24 @@ class Calendar {
   }
 }
 
+function Labels() {
+  const labels = new Array(24);
+  let labelsList = document.createElement('UL');
+  labelsList.className = 'labels';
+
+  for (let i = 0; i < labels.length; i++) {
+    let label = document.createElement('LI');
+    label.innerText = `${String(i).padStart(2, '0')}:00`;
+    labelsList.appendChild(label);
+  }
+
+  return labelsList.outerHTML;
+}
+
 function DayView() {
   return(
     `<div class="views view-day" id="view-day">
+      ${Labels()}
       <div class="day-grid">
         ${'<div class="hour"></div>'.repeat(24)}
       </div>
@@ -63,7 +78,10 @@ function DayView() {
 function WeekView() {
   return(
     `<div class="views view-week" id="view-week">
-      ${`<div class="day-grid">${'<div class="hour"></div>'.repeat(24)}</div>`.repeat(7)}
+      ${Labels()}
+      <div class="days">
+        ${`<div class="day-grid">${'<div class="hour"></div>'.repeat(24)}</div>`.repeat(7)}
+      </div>
     </div>`
   );
 }

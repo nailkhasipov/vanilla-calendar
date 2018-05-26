@@ -10,7 +10,7 @@ class Calendar {
     Array.prototype.forEach.call(views, function(view) {
       view.style.display = 'none';
     });
-    document.querySelector(`.view-${view}`).style.display = 'block';
+    document.querySelector(`.view-${view}`).style.display = 'flex';
   }
 
   createEvent() {
@@ -62,13 +62,17 @@ function DayView() {
 
 function WeekView() {
   return(
-    `<div class="views view-week" id="view-week">week</div>`
+    `<div class="views view-week" id="view-week">
+      ${`<div class="day-grid">${'<div class="hour"></div>'.repeat(24)}</div>`.repeat(7)}
+    </div>`
   );
 }
 
 function MonthView() {
   return(
-    `<div class="views view-month" id="view-month">month</div>`
+    `<div class="views view-month" id="view-month">
+      ${getHTMLMonthTable()}
+    </div>`
   );
 }
 
@@ -88,7 +92,6 @@ function getHTMLMonthTable() {
   }
 
   const table = document.createElement('table');
-  table.innerHTML = '<caption>Month</caption>';
   for (var w = 0; w < month.length; w++) {
     var row = table.insertRow(w);
     for (var d = 0; d < month[w].length; d++) {

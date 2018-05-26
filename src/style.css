@@ -66,19 +66,18 @@ html, body {
   overflow: scroll;
 }
 
-.calendar .main .view-day {
+.calendar .main .views {
   flex: 1;
   position: relative;
 }
 
-.calendar .main .view-day .hour {
+.day-grid .hour {
   height: 40px;
   border-top: 1px solid #e2e2e2;
 }
 
-.calendar .main .view-day .thirty {
-  height: 20px;
-  position: relative;
+.calendar .main .view-day .day-grid {
+  width: 100%;
 }
 
 .calendar .main .view-week {
@@ -87,4 +86,23 @@ html, body {
 
 .calendar .main .view-month {
   display: none;
+}
+
+.view-month table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+.view-month th, .view-month td {
+  border: 1px solid #e2e2e2;
+}
+
+.calendar .main .view-week .day-grid {
+  width: 14.285713%;
+  border-right: 1px solid #e2e2e2;
+}
+
+.calendar .main .view-week .day-grid:last-child {
+  border-right: none;
 }

@@ -93,6 +93,7 @@ html, body {
 .view-day {
   padding-left: 40px;
   padding-top: 10px;
+  /* display: none; */
 }
 
 .calendar .main .view-day .day-grid {
@@ -102,11 +103,15 @@ html, body {
 .calendar .main .view-week {
   padding-left: 40px;
   padding-top: 10px;
-  display: none;
+  display: flex;
+}
+
+.view-week .labels {
+  top: 60px;
 }
 
 .calendar .main .view-month {
-  display: none;
+  /* display: none; */
 }
 
 .view-month table {
@@ -134,4 +139,20 @@ html, body {
 
 .calendar .main .view-week .day-grid:last-child .hour {
   border-right: none;
+}
+
+.day-label {
+  font-weight: 300;
+  color: #222;
+  margin: 0;
+  height: 60px;
+}
+
+.month-table td {
+  vertical-align: top;
+}
+
+.month-table p {
+  text-align: right;
+  margin: 0;
 }

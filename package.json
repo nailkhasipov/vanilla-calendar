@@ -2,11 +2,9 @@
   "name": "calendar",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "watch": "webpack --watch",
-    "build": "webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

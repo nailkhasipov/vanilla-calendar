@@ -2,9 +2,12 @@
   "name": "calendar",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack-dev-server --open",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,9 @@
     "url": "https://github.com/nailkhasipov/calendar/issues"
   },
   "homepage": "https://github.com/nailkhasipov/calendar#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  }
 }

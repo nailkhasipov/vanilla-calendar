@@ -156,3 +156,9 @@ html, body {
   text-align: right;
   margin: 0;
 }
+
+.date-info {
+  margin: 0;
+  font-weight: 300;
+  line-height: 40px;
+}

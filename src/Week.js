@@ -1,12 +1,12 @@
 import { getMondayDate } from './helpers';
 import HourLabels from './HourLabels';
 
-export default function Week() {
+export default function Week(date) {
   const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   const week = document.createElement('DIV');
   week.className = 'days';
 
-  const mondayDate = getMondayDate(calendar.date);
+  const mondayDate = getMondayDate(date);
   let weekDay = 0;
 
   for (let i = mondayDate; i < mondayDate + 7; i++) {

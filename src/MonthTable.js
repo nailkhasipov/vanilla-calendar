@@ -1,7 +1,7 @@
 import { getMonthArray } from './helpers';
 
 export default function MonthTable(timestamp) {
-  const today = String(new Date().getDate());
+  const today = String(new Date(timestamp).getDate());
   const month = getMonthArray(timestamp);
 
   const table = document.createElement('table');

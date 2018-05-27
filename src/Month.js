@@ -1,16 +1,16 @@
 import { getMonthArray } from './helpers';
 
-export default function Month() {
+export default function Month(date) {
   return(
     `<div class="views view-month" id="view-month">
-      ${MonthTable()}
+      ${MonthTable(date)}
     </div>`
   );
 }
 
-function MonthTable() {
+function MonthTable(date) {
   //@TODO think about it
-  const month = getMonthArray(calendar.date);
+  const month = getMonthArray(date);
 
   const table = document.createElement('table');
   table.className = 'month-table';

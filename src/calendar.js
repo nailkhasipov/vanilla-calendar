@@ -9,7 +9,6 @@ class Calendar {
   constructor(root) {
     this.root = root;
     this.view = 'day';
-    // this.date = '27 May 2018';
     this.date = Date.now();
 
     root.innerHTML = this.render();
@@ -24,18 +23,28 @@ class Calendar {
     console.log('create event');
   }
 
+  prev() {
+    this.date -= 86400000;
+    this.root.innerHTML = this.render();
+  }
+
+  next() {
+    this.date += 86400000;
+    this.root.innerHTML = this.render();
+  }
+
   render() {
     let view;
 
     switch (this.view) {
     case 'day':
-      view = Day();
+      view = Day(this.date);
       break;
     case 'week':
-      view = Week();
+      view = Week(this.date);
       break;
     case 'month':
-      view = Month();
+      view = Month(this.date);
       break;
     }
 
@@ -44,8 +53,8 @@ class Calendar {
         <div class="top">
         <div class="navigation">
           <button>TODAY</button>
-          <button><</button>
-          <button>></button>
+          <button onclick="calendar.prev()"><</button>
+          <button onclick="calendar.next()">></button>
         </div>
         <h2 class="date-info">${getDateTitle(this.date)}</h2>
         <div class="view-change">

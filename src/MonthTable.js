@@ -1,7 +1,8 @@
 import { getMonthArray } from './helpers';
 
-export default function MonthTable() {
-  const month = getMonthArray();
+export default function MonthTable(timestamp) {
+  const today = String(new Date().getDate());
+  const month = getMonthArray(timestamp);
 
   const table = document.createElement('table');
   for (var w = 0; w < month.length; w++) {
@@ -10,6 +11,9 @@ export default function MonthTable() {
       var cell = row.insertCell(-1);
       cell.innerHTML = month[w][d];
       cell.setAttribute('align', 'center');
+
+      if (month[w][d] === today)
+        cell.className = 'today';
     }
   }
 

@@ -9,7 +9,8 @@ export default function Month() {
 }
 
 function MonthTable() {
-  const month = getMonthArray();
+  //@TODO think about it
+  const month = getMonthArray(calendar.date);
 
   const table = document.createElement('table');
   table.className = 'month-table';

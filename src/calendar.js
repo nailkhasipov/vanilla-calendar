@@ -1,3 +1,5 @@
+import { getDateTitle }from './helpers';
+
 import MonthTable from './MonthTable';
 import Day from './Day';
 import Week from './Week';
@@ -7,7 +9,8 @@ class Calendar {
   constructor(root) {
     this.root = root;
     this.view = 'day';
-    this.date = '27 May 2018';
+    // this.date = '27 May 2018';
+    this.date = Date.now();
 
     root.innerHTML = this.render();
   }
@@ -44,7 +47,7 @@ class Calendar {
           <button><</button>
           <button>></button>
         </div>
-        <h2 class="date-info">${this.date}</h2>
+        <h2 class="date-info">${getDateTitle(this.date)}</h2>
         <div class="view-change">
           <button onclick="calendar.changeView('day')">DAY</button>
           <button onclick="calendar.changeView('week')">WEEK</button>
@@ -55,7 +58,7 @@ class Calendar {
           <div class="sidebar">
             <button onclick="calendar.createEvent()">CREATE</button>
             <div class="sidebar-month" id="sidebar-month">
-              ${MonthTable()}
+              ${MonthTable(this.date)}
             </div>
           </div>
           <div class="view">

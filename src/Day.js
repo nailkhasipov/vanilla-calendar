@@ -1,4 +1,4 @@
-import { HourLabels } from './helpers';
+import HourLabels from './HourLabels';
 
 export default function Day() {
   return(

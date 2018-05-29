@@ -1,3 +1,6 @@
+@import 'EventForm.css';
+@import 'Day.css';
+
 * {
   box-sizing: border-box;
 }
@@ -85,21 +88,6 @@ html, body {
   height: 40px;
 }
 
-.day-grid .hour {
-  height: 40px;
-  border-top: 1px solid #e2e2e2;
-}
-
-.view-day {
-  padding-left: 40px;
-  padding-top: 10px;
-  /* display: none; */
-}
-
-.calendar .main .view-day .day-grid {
-  width: 100%;
-}
-
 .calendar .main .view-week {
   padding-left: 40px;
   padding-top: 10px;
@@ -158,6 +146,11 @@ html, body {
   border-radius: 50%;
 }
 
+.sidebar-month td {
+  width: 36px;
+  height: 36px;
+}
+
 .month-table p {
   text-align: right;
   margin: 0;
@@ -167,4 +160,12 @@ html, body {
   margin: 0;
   font-weight: 300;
   line-height: 40px;
+}
+
+.new-event-form {
+  margin-top: 30px;
+}
+
+.form-field {
+  width: 100%;
 }

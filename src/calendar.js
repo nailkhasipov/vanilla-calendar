@@ -1,6 +1,7 @@
 import { getDateTitle }from './helpers';
 
 import MonthTable from './MonthTable';
+import EventForm from './EventForm';
 import Day from './Day';
 import Week from './Week';
 import Month from './Month';
@@ -10,6 +11,7 @@ class Calendar {
     this.root = root;
     this.view = 'day';
     this.date = Date.now();
+    this.events = JSON.parse(localStorage.getItem('events')) || [];
 
     root.innerHTML = this.render();
   }
@@ -19,8 +21,26 @@ class Calendar {
     this.root.innerHTML = this.render();
   }
 
-  createEvent() {
-    console.log('create event');
+  newEvent() {
+    const name = document.querySelector('#event_name').value;
+
+    const startDate = document.querySelector('#event_start_date').value;
+    const startTime = document.querySelector('#event_start_time').value;
+    const start = toDate(startDate, startTime);
+
+    const endDate = document.querySelector('#event_end_date').value;
+    const endTime = document.querySelector('#event_end_time').value;
+    const end = toDate(endDate, endTime);
+
+    const event = {
+      name: name,
+      start: start,
+      end: end
+    };
+
+    this.events.push(event);
+
+    localStorage.setItem('events', JSON.stringify(this.events));
   }
 
   prev() {
@@ -38,7 +58,7 @@ class Calendar {
 
     switch (this.view) {
     case 'day':
-      view = Day(this.date);
+      view = Day(this.date, this.events);
       break;
     case 'week':
       view = Week(this.date);
@@ -65,10 +85,10 @@ class Calendar {
         </div>
         <div class="main">
           <div class="sidebar">
-            <button onclick="calendar.createEvent()">CREATE</button>
             <div class="sidebar-month" id="sidebar-month">
               ${MonthTable(this.date)}
             </div>
+            ${EventForm(this.date)}
           </div>
           <div class="view">
             ${view}
@@ -80,3 +100,9 @@ class Calendar {
 }
 
 export default Calendar;
+
+function toDate(dateStr, timeStr) {
+  const [year, month, day] = dateStr.split('-');
+  const [hour, minute] = timeStr.split(':');
+  return new Date(year, month - 1, day, hour, minute).getTime();
+}

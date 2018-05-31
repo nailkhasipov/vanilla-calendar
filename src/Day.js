@@ -1,3 +1,4 @@
+import { htmlToElement } from './helpers'; 
 import HourLabels from './HourLabels';
 
 export default function Day(timestamp, events) {
@@ -7,17 +8,22 @@ export default function Day(timestamp, events) {
 
   const dayEvents = events.filter(event => event.start > startOfTheDay && event.start < endOfTheDay);
 
-  return(
-    `<div class="views view-day" id="view-day">
+  const element = htmlToElement(`
+    <div class="views view-day" id="view-day">
       ${HourLabels()}
       <div class="day-grid">
         ${'<div class="hour"></div>'.repeat(24)}
         <div class="day-events">
-          ${dayEvents.map(event => Event(event))}
         </div>
       </div>
-    </div>`
-  );
+    </div>
+  `);
+
+  dayEvents.forEach(event => {
+    element.querySelector('.day-events').appendChild(Event(event));
+  });
+
+  return element;
 }
 
 function Event(props) {
@@ -34,5 +40,9 @@ function Event(props) {
   eventElement.style.top = `${topPosition}px`;
   eventElement.style.height = `${height}px`;
 
-  return eventElement.outerHTML;
+  eventElement.onclick = function() {
+    console.log('click');
+  };
+
+  return eventElement;
 }

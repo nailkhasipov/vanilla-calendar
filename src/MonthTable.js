@@ -17,5 +17,5 @@ export default function MonthTable(timestamp) {
     }
   }
 
-  return table.outerHTML;
+  return table;
 }

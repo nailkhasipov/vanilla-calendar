@@ -1,3 +1,14 @@
+/**
+ * @param {String} HTML representing a single element
+ * @return {Element}
+ */
+function htmlToElement(html) {
+  var template = document.createElement('template');
+  html = html.trim(); // Never return a text node of whitespace as the result
+  template.innerHTML = html;
+  return template.content.firstChild;
+}
+
 function getMonthArray(timestamp) {
   const month = [[]];
   const date = new Date(timestamp);
@@ -36,4 +47,4 @@ function getMondayDate(d) {
   return new Date(d.setDate(diff)).getDate();
 }
 
-export { getMonthArray, getMondayDate, getDateTitle };
+export { htmlToElement, getMonthArray, getMondayDate, getDateTitle };

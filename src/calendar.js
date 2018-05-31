@@ -1,82 +1,84 @@
-import { getDateTitle }from './helpers';
+import { htmlToElement, getDateTitle }from './helpers';
 
 import MonthTable from './MonthTable';
 import EventForm from './EventForm';
 import Day from './Day';
-import Week from './Week';
-import Month from './Month';
+
+const TWENTYFOURHOURS = 86400000;
 
 class Calendar {
-  constructor(root) {
-    this.root = root;
-    this.view = 'day';
-    this.date = Date.now();
-    this.events = JSON.parse(localStorage.getItem('events')) || [];
-
-    root.innerHTML = this.render();
-  }
-
-  changeView(view) {
-    this.view = view;
-    this.root.innerHTML = this.render();
-  }
-
-  newEvent() {
-    const name = document.querySelector('#event_name').value;
-
-    const startDate = document.querySelector('#event_start_date').value;
-    const startTime = document.querySelector('#event_start_time').value;
-    const start = toDate(startDate, startTime);
-
-    const endDate = document.querySelector('#event_end_date').value;
-    const endTime = document.querySelector('#event_end_time').value;
-    const end = toDate(endDate, endTime);
-
-    const event = {
-      name: name,
-      start: start,
-      end: end
+  constructor(element) {
+    this.element = element;
+    this.state = {
+      date: new Date().getTime(),
+      view: 'day',
+      events: JSON.parse(localStorage.getItem('events')) || []
     };
 
-    this.events.push(event);
+    this.handlePrev = this.handlePrev.bind(this);
+    this.handleNext = this.handlePrev.bind(this);
+    this.handleNewEvent = this.handleNewEvent.bind(this);
 
-    localStorage.setItem('events', JSON.stringify(this.events));
+    this.render();
   }
 
-  prev() {
-    this.date -= 86400000;
-    this.root.innerHTML = this.render();
+  setState(props) {
+    for (var key in props) {
+      if (props.hasOwnProperty(key)) {
+        this.state[key] = props[key];
+      }
+    }
+
+    this.render();
   }
 
-  next() {
-    this.date += 86400000;
-    this.root.innerHTML = this.render();
+  handlePrev() {
+    const date = this.state.date - TWENTYFOURHOURS;
+    this.setState({
+      date: date
+    });
+  }
+
+  handleNext() {
+    const date = this.state.date + TWENTYFOURHOURS;
+    this.setState({
+      date: date
+    });
+  }
+
+  handleNewEvent(event) {
+    const events = this.state.events;
+    events.push(event);
+    localStorage.setItem('events', JSON.stringify(events));
+
+    this.setState({
+      events: events
+    });
   }
 
   render() {
-    let view;
+    const calendar = htmlToElement(this.template());
 
-    switch (this.view) {
-    case 'day':
-      view = Day(this.date, this.events);
-      break;
-    case 'week':
-      view = Week(this.date);
-      break;
-    case 'month':
-      view = Month(this.date);
-      break;
-    }
+    calendar.querySelector('PrevButton').replaceWith(PrevButton(this.handlePrev));
+    calendar.querySelector('NextButton').replaceWith(NextButton(this.handleNext));
+    calendar.querySelector('MonthTable').replaceWith(MonthTable(this.state.date));
+    calendar.querySelector('EventForm').replaceWith(EventForm(this.state.date, this.handleNewEvent));
+    calendar.querySelector('View').replaceWith(Day(this.state.date, this.state.events));
 
-    return (
-      `<div class="calendar">
+    this.element.innerHTML = '';
+    this.element.appendChild(calendar);
+  }
+
+  template() {
+    return `
+      <div class="calendar">
         <div class="top">
         <div class="navigation">
           <button>TODAY</button>
-          <button onclick="calendar.prev()"><</button>
-          <button onclick="calendar.next()">></button>
+          <PrevButton></PrevButton>
+          <NextButton></NextButton>
         </div>
-        <h2 class="date-info">${getDateTitle(this.date)}</h2>
+        <h2 class="date-info">${getDateTitle(this.state.date)}</h2>
         <div class="view-change">
           <button onclick="calendar.changeView('day')">DAY</button>
           <button onclick="calendar.changeView('week')">WEEK</button>
@@ -86,23 +88,33 @@ class Calendar {
         <div class="main">
           <div class="sidebar">
             <div class="sidebar-month" id="sidebar-month">
-              ${MonthTable(this.date)}
+              <MonthTable></MonthTable>
             </div>
-            ${EventForm(this.date)}
+            <EventForm></EventForm>
           </div>
           <div class="view">
-            ${view}
+            <View></View>
           </div>
         </div>
-      </div>`
-    );
+      </div>
+    `;
   }
 }
 
-export default Calendar;
+function PrevButton(onClick) {
+  const prevButton = document.createElement('BUTTON');
+  prevButton.innerText = '<';
+  prevButton.onclick = () => onClick();
 
-function toDate(dateStr, timeStr) {
-  const [year, month, day] = dateStr.split('-');
-  const [hour, minute] = timeStr.split(':');
-  return new Date(year, month - 1, day, hour, minute).getTime();
+  return prevButton;
 }
+
+function NextButton(onClick) {
+  const nextButton = document.createElement('BUTTON');
+  nextButton.innerText = '>';
+  nextButton.onclick = () => onClick();
+
+  return nextButton;
+}
+
+export default Calendar;
